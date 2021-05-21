@@ -1,18 +1,3 @@
-// var admin = require("firebase-admin");
-
-// // change to your credentials
-
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://gabrews-97fed-default-rtdb.firebaseio.com"
-// });
-
-// const db = admin.firestore();
-
-// const {Firestore} = require('@google-cloud/firestore');
-
-// const firestore = new Firestore();
-
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
@@ -33,14 +18,11 @@ firebase.initializeApp(firebaseConfig)
 
 export async function pullStyles(){
   let styleList =  await db.collection("styles").get();
+  let list = [];
   styleList.forEach(doc => {
-    console.log(doc.id, '=>', doc.data());
-  });
-  
-  console.log(styleList)
-//   styleList.forEach((doc)=>{
-//     console.log(doc)
-//   })
 
-//   console.log(styleList)
+    list.push(doc.data())
+  });
+
+  return list;
 }
